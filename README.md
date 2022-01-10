@@ -79,6 +79,8 @@ In the `ExampleMethods` class, you will use the design recipe to write two metho
 
 You are welcome to add _any number_ of additional methods to help with your implementation.
 
+You can add tests in the provided `ExampleMethods` class.
+
 ### Task 2
 
 The file `ExampleCourses.java` you will be writing 2 classes and 2 methods.
@@ -100,6 +102,7 @@ Additionally, you will add 2 methods to `Course`.
 
 You are welcome to add _any number_ of additional methods to help with your implementation.
 
+You may add tests in the provide `ExampleCourses` class.
 
 ### Task 3 – Video
 You will record a short video of no more than 5 minutes. Include:
