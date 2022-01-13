@@ -7,7 +7,7 @@ released-on: "2021-01-21"
 # Exam 1
 
 ### Release: 10am Friday January 21, 2021
-### Due: 11:59pm Saturday January 22, 2021
+### Due: 10pm Saturday January 22, 2021
 
 **Note that this is released after class Friday, and is due the next day in the evening. We will not accept late submissions.**
 
