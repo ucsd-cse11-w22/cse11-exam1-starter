@@ -139,7 +139,7 @@ You may add tests in the provided `ExampleCourses` class.
 
 1. Helper methods
 
-    You may find it helpful to add several helper methods to help with your implementation for Task 2. Here are three that you may find it helpful to use.
+    You may find it helpful to add several helper methods to help with your implementation for Task 2. Here are three that you may find helpful to use.
 
     ```
     Course: 
