@@ -7,7 +7,7 @@ released-on: "2021-01-21"
 # Exam 1
 
 ### Release: 10am Friday January 21, 2021
-### Due: 11:59pm Saturday January 22, 2021
+### Due: 10pm Saturday January 22, 2021
 
 **Note that this is released after class Friday, and is due the next day in the evening. We will not accept late submissions.**
 
@@ -27,7 +27,7 @@ You can make use of any course notes, online resources about Java and its
 libraries, Java tools, and so on to complete the exam, including re-using code
 from class notes.
 
-You can review the grading policy for exams in the [syllabus](/syllabus.html).
+You can review the grading policy for exams in the [syllabus](https://ucsd-cse11-w22.github.io/syllabus.html).
 You will complete the programming task below and submit your work to the `exam1` Gradescope assignment.
 
 Submission checklist (see long descriptions below for full details):
@@ -63,19 +63,31 @@ Yes, we will grade the last submission you make before the deadline.
 
 You can find the starter code in this repository [https://github.com/ucsd-cse11-w22/cse11-exam1-starter](https://github.com/ucsd-cse11-w22/cse11-exam1-starter).
 
-For all tasks, do not make any assumptions besides the ones explicitly mentioned.
+For all tasks, do not make any assumptions besides the ones explicitly mentioned. You may assume all objects will be non-null.
 
 ### Task 1
 
 In the `ExampleMethods` class, you will use the design recipe to write two methods:
 
-- `timeAfterWait`, which takes three non-negative `int` parameters and returns a `String`. The first two parameters will represent the hour and minutes, respectively, of the start time. The third parameter will represent the amount of time, in minutes, that have passed. You will return the time after waiting the specified amount of time as a string in the form of `hh:mm`.  
+- `timeAfterWait`, which takes two non-negative `int` parameters, one `int` parameter and returns a `String`. The first two parameters will represent the hour and minutes, respectively, of the start time. The third parameter will represent the amount of time, in minutes, that have passed. You will return the time after waiting the specified amount of time as a string in the form of `hh:mm`. Be aware of the different times of time rollover. 
 
     You will use 24-hour time (Military time) to denote times. Refer to this for more information: https://en.wikipedia.org/wiki/24-hour_clock
 
     You may assume only valid start times.
 
+    ```
+    Example:
+    
+    Start: 9:15 | Duration: 15 | Result: "09:30" 
+    ```
+
 - `flipString`, which takes two `String` parameters and returns a `String`. The first is the actual string, `str`, that will be flipped and the second is string containing a delimeter, `delim`. If `str` contains `delim`, then you will flip the string around the first occurrence of `delim`. If `str` does not contain `delim`, then you will return `str`.
+
+    ```
+    Example:
+
+    Str: "cse 11" | delim: " " | Result: "11 cse"
+    ```
 
 You are welcome to add _any number_ of additional methods to help with your implementation.
 
@@ -92,17 +104,81 @@ You will add 2 classes:
 
 Additionally, you will add 2 methods to `Course`.
 
-- A new method called `overlap` that takes 1 `Course` parameter and returns a boolean. You will return `true` if there is any overlap between `this` course and course given as an argument, otherwise `false`.
+- A new method called `shiftToRemoveOverlap` that takes 1 `Course` parameter and returns a `int` representing the least amount of time needed to shift a single course such that there is no overlap between the two. You will return `0` if there is any overlap between `this` course and course given as an argument, otherwise return the amount of time, in minutes, needed to shift.
 
-    You may assume both courses occur on the same day.
+    ```
+    Example:
+
+    CSE 11: 9:00 - 9:50
+    CSE 12: 9:30 - 10:50
+
+    Result: 20
+    ```
 
 - A new method called `timeBetween` take takes 1 `Course` parameter and returns an `int` representing the amount of time, in minutes, between `this` course and the course given as an argument. If the courses overlap, return `0`, else return the time between the earlier course and the later course.
+    ```
+    Example:
 
-    You may assume both courses occur on the same day.
+    CSE 11: 9:00 - 9:50
+    CSE 12: 10:00 - 11:20
+
+    Result: 10
+    ```
+You may assume that both courses occur at valid times. Make no assumptions about when courses start or end and the ordering of the courses.
+
+ 
 
 You are welcome to add _any number_ of additional methods to help with your implementation.
 
-You may add tests in the provide `ExampleCourses` class.
+You may add tests in the provided `ExampleCourses` class.
+
+### Implementation Suggestions for Task 2
+
+1. Helper methods
+
+    You may find it helpful to add several helper methods to help with your implementation for Task 2. Here are three that you may find it helpful to use.
+
+    ```
+    Course: 
+    // return true if there is overlap between this and other course
+    boolean overlap(Course c);
+
+    Time:
+    // return true if this time is before other time
+    boolean before(Time t);
+
+    // return time between this time and other time
+    int between(Time t);
+    ```
+
+2. Types of overlap
+    
+    Be aware of the 4 types of overlap
+
+    1. Course 1 ends after Course 2 starts. 
+        
+        Ex: 9am - 10am and 9:30am - 10am
+    2. Course 1 starts and ends after Course 2 starts and ends
+
+        Ex: 9am - 10am and 9:15am - 9:45am
+    3. Course 1 starts after Course 2 starts and ends before Course 2 ends
+
+        Ex: 9:15am - 9:45am and 9am - 10am
+    4. Course 1 starts before Course 2 ends
+
+        Ex: 9:30am - 10:30am and 9am - 10am
+
+    If Courses share a time boundary, they are not considered overlapping. 
+
+    Ex: 9am - 10am and 10am - 11am are two non-overlapping courses
+
+
+3. Courses starting and ending on different days
+
+    Be aware that a course may start and end on different days. This may apply to 0, 1, or 2 courses when calling both `shiftToRemoveOverlap` and `timeBetween`.
+
+    Ex: 11pm - 2am is a valid course time.
+
 
 ### Task 3 – Video
 You will record a short video of no more than 5 minutes. Include:
@@ -111,7 +187,7 @@ You will record a short video of no more than 5 minutes. Include:
 
 Your task:
 - Choose two examples for your `flipString` method, one where the delimeter is contained in the string and one where the delimeter is not contained in the string. For each, trace through the code by showing which return statement in your program runs and what value is returned by that statement. Leave a comment in the code indicating which return statement ran and the expected value for each example.
-- Trace the example you wrote for `timeBetween` where the two courses do not overlap. Leave a comment on each line of code that runs.
+- Trace the example you wrote for `timeBetween` where the two courses do not overlap and at least 1 course starts and ends on different days. Highlight with your mouse each line that runs.
 
 An example of what your video should look like when doing this kind of explanation is here:
 
@@ -127,4 +203,4 @@ Here are some notes on how to improve your videos:
 - Video must have sound! While highlighting your code, also make sure to explain the code. We must hear you explain it!
 - Once you enable screen share, make sure to leave it on the entire time while explaining your code.
 - Do not explain every test case! Only explain what you are explicitly told in the tasks above.
-- Keep your videos under 5 minutes; videos even a second over 5 minutes will get a `0`, this is to ensure we can grade them promptly. To ensure you stay under 5 minutes, make sure to only explain what is described above, and do a few practices or make a script before you start recording.
+- Keep your videos under 5 minutes; videos even a second over 5 minutes will get a `0` on the video part, this is to ensure we can grade them promptly. To ensure you stay under 5 minutes, make sure to only explain what is described above, and do a few practices or make a script before you start recording.
