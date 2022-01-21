@@ -28,7 +28,7 @@ libraries, Java tools, and so on to complete the exam, including re-using code
 from class notes.
 
 You can review the grading policy for exams in the [syllabus](https://ucsd-cse11-w22.github.io/syllabus.html).
-You will complete the programming task below and submit your work to the `exam1` Gradescope assignment.
+You will complete the programming task below and submit your work to the `Exam 1` Gradescope assignment.
 
 Submission checklist (see long descriptions below for full details):
 
