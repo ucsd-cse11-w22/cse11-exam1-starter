@@ -124,7 +124,7 @@ Additionally, you will add 2 methods to `Course`.
 
     Result: 10
     ```
-You may assume that both courses occur at valid times. Make no assumptions about when courses start or end and the ordering of the courses.
+You may assume that both courses occur at valid times. Make no assumptions about when courses start or end.
 
  
 
