@@ -52,6 +52,7 @@ situations. Also make sure that your code doesn't have a bug before you blame
 your computer or `./run`!
 
 **I get a score of 0.0/0.0 on autograder.**
+
 This is expected, we will reveal scores after the exam has concluded.
 
 **It says the autograder didn't run successfully.**
